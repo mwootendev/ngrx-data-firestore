@@ -17,6 +17,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "ngrx-data-firestore": [
+        "dist/ngrx-data-firestore"
+      ],
+      "ngrx-data-firestore/*": [
+        "dist/ngrx-data-firestore/*"
+      ]
+    }
   }
 }

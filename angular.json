@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ngrx-data-firestore": {
+    "ngrx-data-firestore-demo": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ngrx-data-firestore",
+            "outputPath": "dist/ngrx-data-firestore-demo",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -58,18 +58,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ngrx-data-firestore:build"
+            "browserTarget": "ngrx-data-firestore-demo:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ngrx-data-firestore:build:production"
+              "browserTarget": "ngrx-data-firestore-demo:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ngrx-data-firestore:build"
+            "browserTarget": "ngrx-data-firestore-demo:build"
           }
         },
         "test": {
@@ -103,7 +103,7 @@
         }
       }
     },
-    "ngrx-data-firestore-e2e": {
+    "ngrx-data-firestore-demo-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -112,11 +112,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "ngrx-data-firestore:serve"
+            "devServerTarget": "ngrx-data-firestore-demo:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "ngrx-data-firestore:serve:production"
+              "devServerTarget": "ngrx-data-firestore-demo:serve:production"
             }
           }
         },
@@ -130,7 +130,42 @@
           }
         }
       }
+    },
+    "ngrx-data-firestore": {
+      "root": "projects/ngrx-data-firestore",
+      "sourceRoot": "projects/ngrx-data-firestore/src",
+      "projectType": "library",
+      "prefix": "ngrxfs",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ngrx-data-firestore/tsconfig.lib.json",
+            "project": "projects/ngrx-data-firestore/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngrx-data-firestore/src/test.ts",
+            "tsConfig": "projects/ngrx-data-firestore/tsconfig.spec.json",
+            "karmaConfig": "projects/ngrx-data-firestore/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngrx-data-firestore/tsconfig.lib.json",
+              "projects/ngrx-data-firestore/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
-  "defaultProject": "ngrx-data-firestore"
+  "defaultProject": "ngrx-data-firestore-demo"
 }
